@@ -1,7 +1,5 @@
 package devopstesterövn;
 
-public interface Växel {
-
-    public void växla();
-
+public enum Växel {
+    DRIVE, REVERSE
 }

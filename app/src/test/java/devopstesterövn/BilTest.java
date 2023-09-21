@@ -60,5 +60,14 @@ class BilTest {
         assertEquals(0, bil.getHastighet());
     }
 
+    @Test
+    @DisplayName("Bil ska ha växel med drive/reverse")
+    void testVäxel() {
+        bil.setVäxel(Växel.DRIVE);
+        assertEquals(Växel.DRIVE,bil.getVäxel());
+        bil.setVäxel(Växel.REVERSE);
+        assertEquals(Växel.REVERSE,bil.getVäxel());
+
+    }
 
 }

@@ -10,6 +10,17 @@ public class Bil implements CarStateListener{
     private Pedaler pedaler;
     private int hastighet;
     private Riktning riktning;
+    private Växel växel;
+
+    public Växel getVäxel() {
+        return växel;
+    }
+
+    public void setVäxel(Växel växel) {
+        this.växel = växel;
+    }
+
+
 
     public Riktning getRiktning() {
         return riktning;
@@ -36,7 +47,7 @@ public class Bil implements CarStateListener{
             this.bakljus.setOn(false);
         }
     }
-    
+
 
     public boolean isStarted() {
         return isStarted;
