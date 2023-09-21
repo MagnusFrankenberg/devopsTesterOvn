@@ -2,20 +2,38 @@ package devopstesterövn;
 
 public class Ljus{
 
-    private boolean isOn;
+    protected CarStateListener carStateListener;
+    protected boolean isOn;
+
+    public Ljus(){
+        this.isOn = false;
+    }
+
+    public void setCarStateListener(CarStateListener listener) {
+        this.carStateListener = listener;
+    }
 
     public boolean isOn() {
         return isOn;
     }
 
-    public void setOn(boolean on) {
-        isOn = on;
+    public void setOn(boolean bool) {
+        isOn = bool;
     }
 }
 
 class Framljus extends Ljus{
 
     private Ljustyp ljusTyp;
+
+    @Override
+    public void setOn(boolean bool){
+        if(carStateListener.carStarted()) {
+            isOn=bool;
+        }else {
+            isOn=false;
+        }
+    }
 
     public Ljustyp getLjusTyp() {
         return ljusTyp;
@@ -27,9 +45,19 @@ class Framljus extends Ljus{
 }
 
 class Bakljus extends Ljus{
-
+    @Override
+    public void setOn(boolean bool){
+        if(carStateListener.carStarted()) {
+            isOn=bool;
+        }else {
+            isOn=false;
+        }
+    }
 }
 
 class VarningsBlinkers extends Ljus{
-
+    @Override
+    public void setOn(boolean bool){
+            isOn=bool;
+    }
 }

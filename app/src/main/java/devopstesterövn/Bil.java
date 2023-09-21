@@ -1,6 +1,6 @@
 package devopstesterövn;
 
-public class Bil {
+public class Bil implements CarStateListener{
 
     private boolean isStarted;
     private Framljus framljus;
@@ -19,39 +19,24 @@ public class Bil {
 
     public Bil() {
         this.isStarted = false;
-        this.framljus = new Framljus();
-        this.bakljus = new Bakljus();
-        this.varningsBlinkers = new VarningsBlinkers();
-        this.hastighet = 0;
+
+       this.framljus = new Framljus();
+       this.framljus.setCarStateListener(this);
+       this.bakljus = new Bakljus();
+       this.bakljus.setCarStateListener(this);
+       this.varningsBlinkers = new VarningsBlinkers();
+       this.varningsBlinkers.setCarStateListener(this);
+       this.hastighet = 0;
     }
 
     public void setStarted(boolean started) {
         isStarted = started;
         if(started==false){
-            setFramljusIsOn(false);
-            setBakljusIsOn(false);
-        }
-    }
-
-    public void setFramljusIsOn(boolean setOn) {
-        if(this.isStarted) {
-            this.framljus.setOn(setOn);
-        }else {
             this.framljus.setOn(false);
-        }
-    }
-
-    public void setBakljusIsOn(boolean setOn) {
-        if(this.isStarted) {
-            this.bakljus.setOn(setOn);
-        }else {
             this.bakljus.setOn(false);
         }
     }
-
-    public void setVarningsBlinkersIsOn(boolean setOn) {
-        this.varningsBlinkers.setOn(setOn);
-    }
+    
 
     public boolean isStarted() {
         return isStarted;
@@ -104,6 +89,11 @@ public class Bil {
         }
     }
 
+
+    @Override
+    public boolean carStarted() {
+        return isStarted();
+    }
 
 
 }
