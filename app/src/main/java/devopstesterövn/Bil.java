@@ -93,7 +93,7 @@ public class Bil {
     }
 
     public void setHastighet(int hastighet) {
-            this.hastighet = Math.min(180, hastighet);
+            this.hastighet = Math.max(Math.min(180, hastighet),0);
         }
 
     public void setRiktning() {
@@ -103,5 +103,7 @@ public class Bil {
             riktning = Riktning.BAKÅT;
         }
     }
+
+
 
 }

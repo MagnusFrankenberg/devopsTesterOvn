@@ -133,12 +133,14 @@ class BilTest {
         assertEquals(0,bil.getHastighet());
     }
 
+
     @Test
-    @DisplayName("Om bromsa mer än 0 bilen går bakåt")
-    void testBromsaMerÄnNoll(){
+    @DisplayName("Bil ska bara bromsa till noll")
+    void testBromsaBaraTillNoll(){
         bil.setHastighet(10);
         bil.användPedal(Pedaler.BROMS);
-        assertEquals(Riktning.BAKÅT,bil.getRiktning());
+        assertEquals(0, bil.getHastighet());
     }
+
 
 }
