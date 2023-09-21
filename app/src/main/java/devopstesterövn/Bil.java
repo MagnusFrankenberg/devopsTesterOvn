@@ -20,6 +20,7 @@ public class Bil implements CarStateListener{
 
     public void setVäxel(Växel växel) {
         this.växel = växel;
+        setRiktning();
     }
 
 
@@ -28,6 +29,14 @@ public class Bil implements CarStateListener{
         return riktning;
     }
 
+    public void setRiktning() {
+        if(växel==Växel.DRIVE){
+            riktning = Riktning.FRAMÅT;
+        }
+        if(växel==Växel.REVERSE){
+            riktning = Riktning.BAKÅT;
+        }
+    }
 
 
     public Bil() {
@@ -76,12 +85,10 @@ public class Bil implements CarStateListener{
         this.pedaler = pedaler;
         if(pedaler==Pedaler.GAS) {
             setHastighet(hastighet + 20);
-            setRiktning();
             this.bromsljus.setOn(false);
         }
         if(pedaler==Pedaler.BROMS){
             setHastighet(hastighet - 20);
-            setRiktning();
             this.bromsljus.setOn(true);
         }
         if(pedaler==Pedaler.BROMS_STOPP){
@@ -101,14 +108,6 @@ public class Bil implements CarStateListener{
     public void setHastighet(int hastighet) {
             this.hastighet = Math.max(Math.min(180, hastighet),0);
         }
-
-    public void setRiktning() {
-        if(hastighet>=0){
-            riktning = Riktning.FRAMÅT;
-        }else {
-            riktning = Riktning.BAKÅT;
-        }
-    }
 
 
     @Override

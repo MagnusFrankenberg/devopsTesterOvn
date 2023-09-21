@@ -69,4 +69,14 @@ class BilTest {
         assertEquals(Växel.REVERSE,bil.getVäxel());
     }
 
+    @Test
+    @DisplayName("Baklänges ska kunna bromsa till noll")
+    void testBaklängesBromsTillNoll() {
+        bil.setVäxel(Växel.REVERSE);
+        bil.setHastighet(10);
+        assertEquals(Riktning.BAKÅT,bil.getRiktning());
+        bil.användPedal(Pedaler.BROMS);
+        assertEquals(0, bil.getHastighet());
+    }
+
 }
