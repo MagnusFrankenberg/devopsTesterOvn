@@ -9,6 +9,13 @@ public class Bil {
 
     private Pedaler pedaler;
     private int hastighet;
+    private Riktning riktning;
+
+    public Riktning getRiktning() {
+        return riktning;
+    }
+
+
 
     public Bil() {
         this.isStarted = false;
@@ -65,10 +72,15 @@ public class Bil {
     public void användPedal(Pedaler pedaler) {
         this.pedaler = pedaler;
         if(pedaler==Pedaler.GAS) {
-            ändraHastighet(20);
+            setHastighet(hastighet + 20);
+            setRiktning();
         }
         if(pedaler==Pedaler.BROMS){
-            ändraHastighet(-20);
+            setHastighet(hastighet - 20);
+            setRiktning();
+        }
+        if(pedaler==Pedaler.BROMS_STOPP){
+            setHastighet(0);
         }
     }
 
@@ -80,8 +92,16 @@ public class Bil {
         return hastighet;
     }
 
-    public void ändraHastighet(int change) {
-            this.hastighet = Math.min(180, hastighet+change);
+    public void setHastighet(int hastighet) {
+            this.hastighet = Math.min(180, hastighet);
         }
+
+    public void setRiktning() {
+        if(hastighet>=0){
+            riktning = Riktning.FRAMÅT;
+        }else {
+            riktning = Riktning.BAKÅT;
+        }
+    }
 
 }

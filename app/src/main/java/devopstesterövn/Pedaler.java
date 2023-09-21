@@ -1,5 +1,5 @@
 package devopstesterövn;
 
 public enum Pedaler {
-    GAS, BROMS
+    GAS, BROMS, BROMS_STOPP
 }
