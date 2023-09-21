@@ -61,3 +61,11 @@ class VarningsBlinkers extends Ljus{
             isOn=bool;
     }
 }
+
+class Bromsljus extends Ljus{
+    @Override
+    public void setOn(boolean bool){
+        isOn=bool;
+    }
+
+}

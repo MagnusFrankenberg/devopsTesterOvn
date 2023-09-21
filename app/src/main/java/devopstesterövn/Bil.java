@@ -7,6 +7,8 @@ public class Bil implements CarStateListener{
     private Bakljus bakljus;
     private VarningsBlinkers varningsBlinkers;
 
+    private Bromsljus bromsljus;
+
     private Pedaler pedaler;
     private int hastighet;
     private Riktning riktning;
@@ -38,6 +40,7 @@ public class Bil implements CarStateListener{
        this.varningsBlinkers = new VarningsBlinkers();
        this.varningsBlinkers.setCarStateListener(this);
        this.hastighet = 0;
+       this.bromsljus = new Bromsljus();
     }
 
     public void setStarted(boolean started) {
@@ -61,6 +64,10 @@ public class Bil implements CarStateListener{
         return bakljus;
     }
 
+    public Bromsljus getBromsljus() {
+        return bromsljus;
+    }
+
     public VarningsBlinkers getVarningsBlinkers() {
         return varningsBlinkers;
     }
@@ -70,13 +77,16 @@ public class Bil implements CarStateListener{
         if(pedaler==Pedaler.GAS) {
             setHastighet(hastighet + 20);
             setRiktning();
+            this.bromsljus.setOn(false);
         }
         if(pedaler==Pedaler.BROMS){
             setHastighet(hastighet - 20);
             setRiktning();
+            this.bromsljus.setOn(true);
         }
         if(pedaler==Pedaler.BROMS_STOPP){
             setHastighet(0);
+            this.bromsljus.setOn(true);
         }
     }
 

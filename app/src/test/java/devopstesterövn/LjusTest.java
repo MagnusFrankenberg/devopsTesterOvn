@@ -13,6 +13,7 @@ class LjusTest {
     Framljus framljus;
     Bakljus bakljus;
     VarningsBlinkers varningsBlinkers;
+    Bromsljus bromsljus;
 
     @BeforeEach
     void setUp() {
@@ -20,6 +21,7 @@ class LjusTest {
         framljus = bil.getFramljus();
         bakljus = bil.getBakljus();
         varningsBlinkers = bil.getVarningsBlinkers();
+        bromsljus = bil.getBromsljus();
     }
 
     @Test
@@ -105,6 +107,19 @@ class LjusTest {
         assertFalse(varningsBlinkers.isOn());
         varningsBlinkers.setOn(true);
         assertTrue(varningsBlinkers.isOn());
+    }
+
+    @Test
+    @DisplayName("När bilen bromsar ska bromsljuset lysa")
+    void testBromsljusVidBroms() {
+        bromsljus.setOn(false);
+        assertFalse(bromsljus.isOn);
+        bil.användPedal(Pedaler.BROMS);
+        assertTrue(bromsljus.isOn());
+        bromsljus.setOn(false);
+        assertFalse(bromsljus.isOn);
+        bil.användPedal(Pedaler.BROMS_STOPP);
+        assertTrue(bromsljus.isOn());
     }
 
 }

@@ -67,7 +67,6 @@ class BilTest {
         assertEquals(Växel.DRIVE,bil.getVäxel());
         bil.setVäxel(Växel.REVERSE);
         assertEquals(Växel.REVERSE,bil.getVäxel());
-
     }
 
 }
