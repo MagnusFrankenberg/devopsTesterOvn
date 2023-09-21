@@ -13,6 +13,7 @@ public class Bil implements CarStateListener{
     private int hastighet;
     private Riktning riktning;
     private Växel växel;
+    Batteri batteri;
 
     public Växel getVäxel() {
         return växel;
@@ -50,6 +51,7 @@ public class Bil implements CarStateListener{
        this.varningsBlinkers.setCarStateListener(this);
        this.hastighet = 0;
        this.bromsljus = new Bromsljus();
+       this.batteri = new Batteri(100);
     }
 
     public void setStarted(boolean started) {
@@ -81,10 +83,15 @@ public class Bil implements CarStateListener{
         return varningsBlinkers;
     }
 
+    public Batteri getBatteri() {
+        return batteri;
+    }
+
     public void användPedal(Pedaler pedaler) {
         this.pedaler = pedaler;
         if(pedaler==Pedaler.GAS) {
             setHastighet(hastighet + 20);
+            batteri.setBatteriNivå(batteri.getBatteriNivå()-10);
             this.bromsljus.setOn(false);
         }
         if(pedaler==Pedaler.BROMS){
@@ -114,6 +121,7 @@ public class Bil implements CarStateListener{
     public boolean carStarted() {
         return isStarted();
     }
+
 
 
 }

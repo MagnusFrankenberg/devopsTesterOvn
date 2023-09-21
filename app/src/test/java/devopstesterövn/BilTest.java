@@ -79,4 +79,10 @@ class BilTest {
         assertEquals(0, bil.getHastighet());
     }
 
+    @Test
+    @DisplayName("Bilen ska ha ett batteri")
+    void testFinnsBatteri() {
+        assertNotNull(bil.batteri);
+    }
+
 }
