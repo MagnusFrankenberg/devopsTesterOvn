@@ -1,11 +1,11 @@
 package devopstesterövn;
 
-public class Ljus{
+public class Ljus implements BatteriAnvändning {
 
     protected CarStateListener carStateListener;
     protected boolean isOn;
 
-    public Ljus(){
+    public Ljus() {
         this.isOn = false;
     }
 
@@ -17,8 +17,16 @@ public class Ljus{
         return isOn;
     }
 
+
     public void setOn(boolean bool) {
         isOn = bool;
+    }
+
+    @Override
+    public void konsumeraBatteri(Batteri batteri){
+        if(isOn()){
+            batteri.setBatteriNivå(batteri.getBatteriNivå()-5);
+        }
     }
 }
 
@@ -30,6 +38,7 @@ class Framljus extends Ljus{
     public void setOn(boolean bool){
         if(carStateListener.carStarted()) {
             isOn=bool;
+            konsumeraBatteri(carStateListener.accessBatteri());
         }else {
             isOn=false;
         }
@@ -49,6 +58,7 @@ class Bakljus extends Ljus{
     public void setOn(boolean bool){
         if(carStateListener.carStarted()) {
             isOn=bool;
+            konsumeraBatteri(carStateListener.accessBatteri());
         }else {
             isOn=false;
         }
@@ -58,7 +68,8 @@ class Bakljus extends Ljus{
 class VarningsBlinkers extends Ljus{
     @Override
     public void setOn(boolean bool){
-            isOn=bool;
+        isOn=bool;
+        konsumeraBatteri(carStateListener.accessBatteri());
     }
 }
 
@@ -66,6 +77,7 @@ class Bromsljus extends Ljus{
     @Override
     public void setOn(boolean bool){
         isOn=bool;
+        konsumeraBatteri(carStateListener.accessBatteri());
     }
 
 }

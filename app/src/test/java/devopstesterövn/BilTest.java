@@ -82,7 +82,7 @@ class BilTest {
     @Test
     @DisplayName("Bilen ska ha ett batteri")
     void testFinnsBatteri() {
-        assertNotNull(bil.batteri);
+        assertNotNull(bil.getBatteri());
     }
 
 }
