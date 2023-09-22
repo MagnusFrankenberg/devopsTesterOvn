@@ -15,6 +15,10 @@ public class Batteri {
     }
 
     public void setBatteriNivå(int batteriNivå) {
-        this.batteriNivå = Math.min(batteriNivå,100);
+        this.batteriNivå = Math.max(Math.min(batteriNivå,100),0);
+    }
+
+    public boolean ärSlut(){
+        return batteriNivå==0;
     }
 }

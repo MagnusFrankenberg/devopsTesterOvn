@@ -23,31 +23,26 @@ public class Ljus implements BatteriAnvändning {
     }
 
     @Override
-    public void konsumeraBatteri(Batteri batteri){
-        if(isOn()){
-            batteri.setBatteriNivå(batteri.getBatteriNivå()-5);
-        }
+    public void konsumeraBatteri(Batteri batteri) {
+        batteri.setBatteriNivå(batteri.getBatteriNivå() - 5);
     }
 }
 
+
 class Framljus extends Ljus{
-
     private Ljustyp ljusTyp;
-
     @Override
-    public void setOn(boolean bool){
-        if(carStateListener.carStarted()) {
-            isOn=bool;
+    public void setOn(boolean turnOn){
+        if(carStateListener.carStarted() && turnOn && !carStateListener.accessBatteri().ärSlut() ) {
             konsumeraBatteri(carStateListener.accessBatteri());
+                isOn=turnOn;
         }else {
             isOn=false;
         }
     }
-
     public Ljustyp getLjusTyp() {
         return ljusTyp;
     }
-
     public void setLjusTyp(Ljustyp ljusTyp){
         this.ljusTyp = ljusTyp;
     }
@@ -55,29 +50,37 @@ class Framljus extends Ljus{
 
 class Bakljus extends Ljus{
     @Override
-    public void setOn(boolean bool){
-        if(carStateListener.carStarted()) {
-            isOn=bool;
+    public void setOn(boolean turnOn){
+        if(carStateListener.carStarted() && turnOn && !carStateListener.accessBatteri().ärSlut() ) {
             konsumeraBatteri(carStateListener.accessBatteri());
+            isOn=turnOn;
         }else {
             isOn=false;
         }
     }
 }
 
-class VarningsBlinkers extends Ljus{
+class VarningsBlinkers extends Ljus {
     @Override
-    public void setOn(boolean bool){
-        isOn=bool;
-        konsumeraBatteri(carStateListener.accessBatteri());
+    public void setOn(boolean turnOn) {
+        if (carStateListener.carStarted() && turnOn && !carStateListener.accessBatteri().ärSlut()) {
+            konsumeraBatteri(carStateListener.accessBatteri());
+            isOn = turnOn;
+        } else {
+            isOn = false;
+        }
     }
 }
 
 class Bromsljus extends Ljus{
     @Override
-    public void setOn(boolean bool){
-        isOn=bool;
-        konsumeraBatteri(carStateListener.accessBatteri());
+    public void setOn(boolean turnOn) {
+        if (carStateListener.carStarted() && turnOn && !carStateListener.accessBatteri().ärSlut()) {
+            konsumeraBatteri(carStateListener.accessBatteri());
+            isOn = turnOn;
+        } else {
+            isOn = false;
+        }
     }
 
 }

@@ -85,4 +85,14 @@ class BilTest {
         assertNotNull(bil.getBatteri());
     }
 
+    @Test
+    @DisplayName("Batteri Slut -> ej öka hastigheten")
+    void testbatteriSlutEjÖkaHastighet() {
+        bil.getBatteri().setBatteriNivå(0);
+        bil.setHastighet(50);
+        bil.användPedal(Pedaler.GAS);
+        assertEquals(50,bil.getHastighet());
+    }
+
+
 }

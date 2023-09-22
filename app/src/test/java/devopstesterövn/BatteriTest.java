@@ -60,7 +60,7 @@ class BatteriTest {
         assertEquals(95,batteri.getBatteriNivå());
     }
 
-    
+
 
 
 
