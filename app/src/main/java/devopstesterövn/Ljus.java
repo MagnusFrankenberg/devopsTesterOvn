@@ -2,14 +2,14 @@ package devopstesterövn;
 
 public class Ljus implements BatteriAnvändning {
 
-    protected CarStateListener carStateListener;
+    protected CarCentralAccessor carStateListener;
     protected boolean isOn;
 
     public Ljus() {
         this.isOn = false;
     }
 
-    public void setCarStateListener(CarStateListener listener) {
+    public void setCarStateListener(CarCentralAccessor listener) {
         this.carStateListener = listener;
     }
 

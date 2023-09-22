@@ -1,6 +1,8 @@
 package devopstesterövn;
 
-public class Bil implements CarStateListener{
+import java.util.List;
+
+public class Bil implements CarCentralAccessor {
 
     private boolean isStarted;
     private Framljus framljus;
@@ -24,8 +26,6 @@ public class Bil implements CarStateListener{
         this.växel = växel;
         setRiktning();
     }
-
-
 
     public Riktning getRiktning() {
         return riktning;
@@ -54,6 +54,7 @@ public class Bil implements CarStateListener{
        this.bromsljus = new Bromsljus();
        this.bromsljus.setCarStateListener(this);
        this.batteri = new Batteri(100);
+       this.batteri.setCarAccessor(this);
     }
 
     public void setStarted(boolean started) {
@@ -120,7 +121,6 @@ public class Bil implements CarStateListener{
             this.hastighet = Math.max(Math.min(180, hastighet),0);
         }
 
-
     @Override
     public boolean carStarted() {
         return isStarted();
@@ -131,5 +131,14 @@ public class Bil implements CarStateListener{
         return this.batteri;
     }
 
+    @Override
+    public void swithOffAllLamps() {
+        List<Ljus> lampor = List.of(framljus,bakljus,varningsBlinkers,bromsljus);
+        for (Ljus lyse : lampor){
+            if(!(lyse instanceof VarningsBlinkers)){
+                lyse.setOn(false);
+            }
+        }
+    }
 
 }

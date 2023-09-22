@@ -1,9 +1,11 @@
 package devopstesterövn;
 
-public interface CarStateListener {
+public interface CarCentralAccessor {
     boolean carStarted();
 
     Batteri accessBatteri();
+
+    void swithOffAllLamps();
 
 
   //  boolean gasPedalPressed();

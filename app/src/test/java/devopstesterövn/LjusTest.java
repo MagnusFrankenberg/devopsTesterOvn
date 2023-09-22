@@ -122,4 +122,22 @@ class LjusTest {
         assertTrue(bromsljus.isOn());
     }
 
+    @Test
+    @DisplayName("När batteriet är slut så slocknar lyset")
+    void testLysenSlocknarBatteriSlut() {
+        bil.setStarted(true);
+        framljus.setOn(true);
+        bakljus.setOn(true);
+        bil.getBatteri().setBatteriNivå(2);
+        assertTrue(framljus.isOn);
+        assertTrue(bakljus.isOn);
+        bil.getBatteri().setBatteriNivå(0);
+        assertFalse(framljus.isOn);
+        assertFalse(bakljus.isOn);
+    }
+
+
+
+
+
 }
