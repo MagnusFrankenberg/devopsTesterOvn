@@ -136,6 +136,16 @@ class LjusTest {
         assertFalse(bakljus.isOn);
     }
 
+    @Test
+    @DisplayName("Varningsblinkers slocknar ej vid batterislut")
+    void testVarningsblinkersBatteriSlut() {
+        bil.setStarted(true);
+        varningsBlinkers.setOn(true);
+        bil.getBatteri().setBatteriNivå(2);
+        assertTrue(varningsBlinkers.isOn);
+        bil.getBatteri().setBatteriNivå(0);
+        assertTrue(varningsBlinkers.isOn);
+    }
 
 
 
