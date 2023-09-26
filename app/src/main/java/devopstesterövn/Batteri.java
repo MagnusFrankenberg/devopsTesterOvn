@@ -1,6 +1,6 @@
 package devopstesterövn;
 
-public class Batteri{
+public class Batteri implements Laddningsbar{
 
 
 
@@ -31,4 +31,9 @@ public class Batteri{
         return batteriNivå==0;
     }
 
+
+    @Override
+    public void laddaEttBatteri() {
+        this.setBatteriNivå(100);
+    }
 }

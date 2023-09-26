@@ -18,6 +18,7 @@ public class Bil implements CarCentralAccessor {
     private Batteri batteri;
 
 
+
     public Växel getVäxel() {
         return växel;
     }
@@ -121,6 +122,7 @@ public class Bil implements CarCentralAccessor {
             this.hastighet = Math.max(Math.min(180, hastighet),0);
         }
 
+
     @Override
     public boolean carStarted() {
         return isStarted();
@@ -140,5 +142,6 @@ public class Bil implements CarCentralAccessor {
             }
         }
     }
+
 
 }

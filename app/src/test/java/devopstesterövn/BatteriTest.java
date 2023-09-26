@@ -61,6 +61,14 @@ class BatteriTest {
     }
 
 
+    @Test
+    @DisplayName("Batteriet kan laddas")
+    void testLaddaBatteri() {
+        batteri.setBatteriNivå(10);
+        assertEquals(10,batteri.getBatteriNivå());
+        batteri.laddaEttBatteri();
+        assertEquals(100,batteri.getBatteriNivå());
+    }
 
 
 
